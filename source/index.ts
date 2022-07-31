@@ -66,4 +66,13 @@ export function pad(str: string, amount?: number) {
     return `${pad}${str}${pad}`
 }
 
-export default { randint, filesIn, logRow, flush, wait, pad }
+/**
+ * Returns the array as a neatly formatted string.
+ * @param arr The array to format.
+ * @param listSymbol The symbol to use for the list.
+ */
+export function list(arr: any[], listSymbol: string = '-') {
+    return arr.map(arg => `${listSymbol} ${arg.toString().trim()}`).join('\n')
+}
+
+export default { randint, filesIn, logRow, flush, wait, pad, list }
