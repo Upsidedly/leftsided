@@ -1,4 +1,5 @@
 import { readdir } from 'fs/promises'
+import { promisify } from 'util'
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive).
@@ -44,4 +45,25 @@ export function flush(amount?: number) {
     for (let i = 0; i < amount; i++) { console.log('') }
 }
 
-export default { randint, filesIn, logRow, flush }
+/**
+ * Yields the code for the provided milliseconds.
+ * @param ms The amount of milliseconds to yield.
+ * @async
+ */
+export async function wait(ms: number): Promise<number> {
+    const t = Date.now()
+    await promisify(setTimeout)(ms)
+    return Date.now() - t
+}
+
+/**
+ * Pads the string with spaces for the provided amount (or once)
+ * @param str The string to pad
+ * @param amount The amount of spaces to pad with
+ */
+export function pad(str: string, amount?: number) {
+    const pad = ' '.repeat(amount ?? 1)
+    return `${pad}${str}${pad}`
+}
+
+export default { randint, filesIn, logRow, flush, wait, pad }
