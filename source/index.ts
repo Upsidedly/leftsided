@@ -26,4 +26,22 @@ export async function filesIn(dir: string, ext?: string | string[]) {
     })
 }
 
-export default { randint, filesIn }
+/**
+ * console.log()'s the members of the array, joined.
+ * @param arr The array to print.
+ */
+export function logRow(arr: any[]) {
+    console.log(arr.map(arg => arg.toString()).join(''))
+}
+
+/**
+ * Flushes the console with a given amount of newlines.
+ * @param amount The amount of newlines to print.
+ */
+export function flush(amount?: number) {
+    if (!amount) return console.log('')
+    // Array.from({ length: amount }).forEach(() => console.log(''))
+    for (let i = 0; i < amount; i++) { console.log('') }
+}
+
+export default { randint, filesIn, logRow, flush }
