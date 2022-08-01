@@ -75,4 +75,19 @@ export function list(arr: any[], listSymbol: string = '-') {
     return arr.map(arg => `${listSymbol} ${arg.toString().trim()}`).join('\n')
 }
 
-export default { randint, filesIn, logRow, flush, wait, pad, list }
+/**
+ * Returns a boolean indicating if the provided object or array truly exists.
+ * @param obj The object to check.
+ */
+export function trulyEmpty(obj?: any[] | { [key: string | number | symbol]: any } | null) {
+    if (!obj) return true
+    if (Array.isArray(obj)) {
+        if (obj.length === 0) return true
+        return false
+    } else {
+        if (Object.keys(obj).length === 0) return true
+        return false
+    }
+}
+
+export default { randint, filesIn, logRow, flush, wait, pad, list, trulyEmpty }
