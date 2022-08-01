@@ -79,7 +79,7 @@ export function list(arr: any[], listSymbol: string = '-') {
  * Returns a boolean indicating if the provided object or array truly exists.
  * @param obj The object to check.
  */
-export function trulyEmpty(obj?: any[] | { [key: string | number | symbol]: any } | null): obj is undefined | null {
+export function trulyEmpty(obj?: any[] | { [key: string]: unknown } | null): obj is undefined | null {
     if (!obj) return true
     if (Array.isArray(obj)) {
         if (obj.length === 0) return true
